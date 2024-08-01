@@ -1,15 +1,14 @@
+import cv2
 import sys
 import random
-from datetime import datetime
-
-from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QVBoxLayout, QHBoxLayout, QLabel, QFileDialog
-from PyQt5.QtCore import Qt, QTimer
-from PyQt5.QtGui import QPixmap, QImage
-import cv2
+import sqlite3
 import mediapipe as mp
 import numpy as np
-import sqlite3
+from datetime import datetime
 from PIL import Image, ImageDraw, ImageFont
+from PyQt5.QtCore import Qt, QTimer
+from PyQt5.QtGui import QPixmap, QImage
+from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QVBoxLayout, QHBoxLayout, QLabel, QFileDialog
 
 
 class JumpAlgorithm:
@@ -135,6 +134,7 @@ class JumpAlgorithm:
         cv2.line(frame, self.white_line_coords[0], self.white_line_coords[1], (0, 255, 0), 2)
         right_toe_pos = (int(right_toe.x * frame.shape[1]), int(right_toe.y * frame.shape[0]))
         right_heel_pos = (int(right_heel.x * frame.shape[1]), int(right_heel.y * frame.shape[0]))
+
         # 检测两条线段是否相交
         def line_intersection(p0, p1, p2, p3):
             v0 = (p1[0] - p0[0], p1[1] - p0[1])
